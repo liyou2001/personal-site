@@ -824,6 +824,11 @@ a {
   line-height: 1.6;
 }
 
+.publication-copy p strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .publication-venue {
   display: block;
   margin-top: 10px;

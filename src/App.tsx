@@ -120,8 +120,8 @@ const projects = [
 
 const publications = [
   {
-    year: '2025',
-    status: 'Under review',
+    year: '',
+    status: 'Under review 2025',
     title:
       'DEBATE: A Large-Scale Benchmark for Evaluating Opinion Dynamics in Role-Playing LLM Agents',
     authors: 'Y. Chuang, R. Tu*, C. Dai*, Y. Li* et al.',
@@ -129,7 +129,7 @@ const publications = [
     href: 'https://arxiv.org/abs/2510.25110',
   },
   {
-    year: '2023',
+    year: '',
     status: 'ICCV 2023',
     title: 'Learning to Learn: How to Continuously Teach Humans and Machines',
     authors:
@@ -137,7 +137,27 @@ const publications = [
     venue: 'International Conference on Computer Vision',
     href: 'https://arxiv.org/abs/2211.15470',
   },
+  {
+    year: '',
+    status: 'NeurIPS Workshop 2024',
+    title:
+      'Improving Out-of-Distribution Generalization by Mimicking the Human Visual Diet',
+    authors: 'S. Madan, Y. Li, M. Zhang, H. Pfister, G. Kreiman',
+    venue:
+      'Conference on Neural Information Processing Systems (NeurIPS 2024) · Workshop on NeuroAI: Fusing Neuroscience and AI for Intelligent Solutions',
+    href: 'https://arxiv.org/abs/2206.07802',
+  },
 ]
+
+function PublicationAuthors({ authors }: { authors: string }) {
+  const [beforeName, afterName] = authors.split('Y. Li')
+
+  return (
+    <>
+      {beforeName}<strong>Y. Li</strong>{afterName}
+    </>
+  )
+}
 
 function ProjectVisual({ type }: { type: string }) {
   if (type === 'spendly') {
@@ -330,10 +350,10 @@ function App() {
                 <div className="publication-copy">
                   <div className="publication-status">
                     <span>{publication.status}</span>
-                    <span>{publication.year}</span>
+                    {publication.year && <span>{publication.year}</span>}
                   </div>
                   <h3>{publication.title}</h3>
-                  <p>{publication.authors}</p>
+                  <p><PublicationAuthors authors={publication.authors} /></p>
                   <span className="publication-venue">{publication.venue}</span>
                 </div>
                 <ArrowUpRight className="publication-arrow" size={24} aria-hidden="true" />
