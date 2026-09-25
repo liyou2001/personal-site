@@ -20,9 +20,9 @@ const experiences = [
     summary:
       'Building and evaluating LLM agents that model how opinions evolve across demographic groups.',
     highlights: [
-      'Curated high-quality human debate samples through a Python data pipeline for training opinion-simulation agents.',
-      'Fine-tuned models with SFT and DPO, reaching 78% embedding-based semantic similarity to human responses.',
-      'Parallelized simulation pipelines to cut experiment runtime from 3 days to 12 hours.',
+      'Engineered a Python data pipeline to curate high-quality human debate samples for training LLM agents to simulate opinions across demographic groups, enabling research on AI agents as proxies for human participants.',
+      'Fine-tuned and evaluated LLMs with Supervised Fine-Tuning (SFT) and Direct Preference Optimization (DPO), achieving 78% embedding-based semantic similarity with human responses.',
+      'Parallelized LLM simulation pipelines with Python multiprocessing, reducing experiment runtime from 3 days to 12 hours (6× speedup).',
     ],
     accent: 'coral',
   },
@@ -32,11 +32,11 @@ const experiences = [
     location: 'Madison, WI',
     period: 'May 2026 — Aug 2026',
     summary:
-      'Shipped search, data onboarding, and asynchronous workflow features for an enterprise AI platform.',
+      'Shipped search, evaluation infrastructure, and data onboarding features for an enterprise AI platform.',
     highlights: [
-      'Implemented semantic search for 500+ users with Cohere Embed, Cohere Rerank, and OpenSearch Serverless.',
-      'Automated dataset provisioning with Next.js, Lambda, and DynamoDB for three enterprise clients.',
-      'Built job-completion notifications with FastAPI, React, and PostgreSQL.',
+      'Enhanced semantic search for 500+ users with Cohere Embed v4, Cohere Rerank 3.5, and Amazon OpenSearch Serverless, improving search recall (Recall@20) by 57% and ranking quality (NDCG@10) by 47%.',
+      'Built a search evaluation benchmark and automated test harness with Python, Docker, and GitHub Actions, evaluating 500 relevance queries (MRR@10: 0.99) and verifying zero unauthorized results across 1,015 access-control tests.',
+      'Architected an automated dataset provisioning workflow with Next.js, AWS Lambda, and DynamoDB, streamlining onboarding for 3 enterprise clients representing $720,000 in ARR.',
     ],
     accent: 'teal',
   },
@@ -48,9 +48,9 @@ const experiences = [
     summary:
       'Automated internal software lifecycle workflows across APIs, infrastructure, and background jobs.',
     highlights: [
-      'Developed Django and PostgreSQL APIs for an internal lifecycle management platform.',
-      'Delivered S3 document uploads with Terraform-managed infrastructure.',
-      'Moved workflows to Celery and SQS, removing roughly seven-second blocking waits.',
+      'Developed REST APIs with Django and PostgreSQL for an internal software lifecycle management platform, reducing manual engineering effort through workflow automation.',
+      'Created document and image uploads with AWS S3 and Terraform, reducing manual artifact handling for DevOps and infrastructure teams.',
+      'Migrated automation workflows to asynchronous background processing with Celery and AWS SQS, eliminating ~7-second blocking waits and making user interactions effectively instantaneous.',
     ],
     accent: 'blue',
   },
@@ -62,8 +62,8 @@ const experiences = [
     summary:
       'Trained and deployed perception models for autonomous patrol robots operating on city streets.',
     highlights: [
-      'Evaluated EfficientPS, YOSO, and Mask2Former models for scene recognition.',
-      'Containerized computer vision models and deployed them to Jueying X20 robots.',
+      'Trained and evaluated EfficientPS, YOSO, and Mask2Former with PyTorch and NumPy for scene recognition on autonomous patrol robots.',
+      'Containerized and deployed computer vision models to Jueying X20 robots with Docker, enabling autonomous city-street deployment projected to save $300K annually in labor costs.',
     ],
     accent: 'yellow',
   },
@@ -75,8 +75,8 @@ const experiences = [
     summary:
       'Built experimental research software and studied how vision models learn novel objects.',
     highlights: [
-      'Created a Flask and SQLite study platform used by more than 500 participants.',
-      'Evaluated CNN and Vision Transformer models across novel-object and image-transformation datasets.',
+      'Designed and implemented a full-stack experimental platform with JavaScript, Flask, and SQLite that supported psychological studies with 500+ participants.',
+      'Trained and evaluated ResNet18, VGG16, AlexNet, and Vision Transformer models across novel-object and image-transformation datasets.',
     ],
     accent: 'coral',
   },
@@ -121,30 +121,30 @@ const projects = [
 const publications = [
   {
     year: '',
-    status: 'Under review 2025',
+    status: '',
     title:
       'DEBATE: A Large-Scale Benchmark for Evaluating Opinion Dynamics in Role-Playing LLM Agents',
     authors: 'Y. Chuang, R. Tu*, C. Dai*, Y. Li* et al.',
-    venue: 'arXiv preprint',
+    venue: 'Conference on Neural Information Processing Systems (NeurIPS) 2026',
     href: 'https://arxiv.org/abs/2510.25110',
   },
   {
     year: '',
-    status: 'ICCV 2023',
+    status: '',
     title: 'Learning to Learn: How to Continuously Teach Humans and Machines',
     authors:
       'P. Singh, Y. Li, A. Sikarwar, W. Lei, D. Gao, M. B. Talbot, Y. Sun, M. Z. Shou, G. Kreiman, M. Zhang',
-    venue: 'International Conference on Computer Vision',
+    venue: 'International Conference on Computer Vision (ICCV) 2023',
     href: 'https://arxiv.org/abs/2211.15470',
   },
   {
     year: '',
-    status: 'NeurIPS Workshop 2024',
+    status: '',
     title:
       'Improving Out-of-Distribution Generalization by Mimicking the Human Visual Diet',
     authors: 'S. Madan, Y. Li, M. Zhang, H. Pfister, G. Kreiman',
     venue:
-      'Conference on Neural Information Processing Systems (NeurIPS 2024) · Workshop on NeuroAI: Fusing Neuroscience and AI for Intelligent Solutions',
+      'Conference on Neural Information Processing Systems (NeurIPS) 2024 · Workshop on NeuroAI: Fusing Neuroscience and AI for Intelligent Solutions',
     href: 'https://arxiv.org/abs/2206.07802',
   },
 ]
@@ -348,10 +348,12 @@ function App() {
               >
                 <div className="publication-number">0{index + 1}</div>
                 <div className="publication-copy">
-                  <div className="publication-status">
-                    <span>{publication.status}</span>
-                    {publication.year && <span>{publication.year}</span>}
-                  </div>
+                  {(publication.status || publication.year) && (
+                    <div className="publication-status">
+                      {publication.status && <span>{publication.status}</span>}
+                      {publication.year && <span>{publication.year}</span>}
+                    </div>
+                  )}
                   <h3>{publication.title}</h3>
                   <p><PublicationAuthors authors={publication.authors} /></p>
                   <span className="publication-venue">{publication.venue}</span>
