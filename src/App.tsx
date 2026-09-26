@@ -240,7 +240,7 @@ function App() {
           <a href="#publications">Publications</a>
           <a href="#projects">Projects</a>
         </nav>
-        <a className="header-contact" href="mailto:liyou2001@gmail.com">
+        <a className="header-contact" href="mailto:yli2544@wisc.edu">
           <Mail size={16} aria-hidden="true" />
           <span>Get in touch</span>
         </a>
@@ -412,8 +412,8 @@ function App() {
             <h2>Contact</h2>
             <div className="contact-copy">
               <p>I’m always glad to talk about applied AI, research, or building useful software.</p>
-              <a className="contact-email" href="mailto:liyou2001@gmail.com">
-                liyou2001@gmail.com <ArrowUpRight size={22} aria-hidden="true" />
+              <a className="contact-email" href="mailto:yli2544@wisc.edu">
+                yli2544@wisc.edu <ArrowUpRight size={22} aria-hidden="true" />
               </a>
             </div>
           </div>
