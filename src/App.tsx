@@ -356,12 +356,14 @@ function App() {
                   )}
                   <h3>{publication.title}</h3>
                   <p><PublicationAuthors authors={publication.authors} /></p>
+                  {publication.authors.includes('*') && (
+                    <p className="contribution-note">* Authors with core contributions</p>
+                  )}
                   <span className="publication-venue">{publication.venue}</span>
                 </div>
                 <ArrowUpRight className="publication-arrow" size={24} aria-hidden="true" />
               </a>
             ))}
-            <p className="contribution-note reveal">* Authors with core contributions</p>
           </div>
         </section>
 
